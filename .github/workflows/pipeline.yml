@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install Dependencies
-        run: pip install -r deployment/requirements.txt
+        run: pip install -r mlops/deployment/requirements.txt
       - name: Upload Dataset to Hugging Face Hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -31,17 +31,17 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install Dependencies
-        run: pip install -r deployment/requirements.txt
+        run: pip install -r mlops/deployment/requirements.txt
       - name: Run Data Preparation
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python mls10-wellness_tourism_mlops/model_building/prep.py
+        run: python mlops/model_building/prep.py
       # We upload the data folder so 'train' job can use the split files
       - name: Upload Prepared Data
         uses: actions/upload-artifact@v4
         with:
           name: prepared-data
-          path: mls10-wellness_tourism_mlops/data/
+          path: mlops/data/
 
   model-training:
     needs: data-prep
@@ -53,12 +53,12 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install Dependencies
-        run: pip install -r /deployment/requirements.txt
+        run: pip install -r mlops/deployment/requirements.txt
       - name: Download Prepared Data
         uses: actions/download-artifact@v4
         with:
           name: prepared-data
-          path: mls10-wellness_tourism_mlops/data/
+          path: mlops/data/
       - name: Run Model Training
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -83,8 +83,8 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install Dependencies
-        run: pip install -r mls10-wellness_tourism_mlops/deployment/requirements.txt
+        run: pip install -r mlops/deployment/requirements.txt
       - name: Push files to Frontend Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python mls10-wellness_tourism_mlops/hosting/hosting.py
+        run: python mlops/hosting/hosting.py
