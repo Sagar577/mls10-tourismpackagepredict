@@ -12,6 +12,8 @@ DEPLOY_FOLDER = "mlops/deployment"
 def deploy():
     # Use the token from GitHub Secrets/Environment
     hf_token = os.getenv("HF_TOKEN")
+    print("deploy function is being called")
+    print("DEPLOY_FOLDER is  " + DEPLOY_FOLDER)
     if not hf_token:
         print("❌ Error: HF_TOKEN not found.")
         return
