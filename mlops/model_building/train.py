@@ -18,6 +18,7 @@ import mlflow
 
 # Set the tracking URL for MLflow
 # Using a local tracking URI for this test run in Colab
+public_url = ngrok.connect(5000).public_url
 mlflow.set_tracking_uri(public_url)
 
 # Set the name for the experiment
