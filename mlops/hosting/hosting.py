@@ -9,7 +9,7 @@ REPO_ID = "SagarAtHf/tourismpackagepredict"
 # Ensure this is set either as a Colab Secret (named HF_TOKEN) or via os.environ['HF_TOKEN'] = 'your_token'
 #HF_TOKEN = os.getenv("HF_TOKEN")
 #Token = os.getenv("HF_TOKEN")
-DEPLOY_FOLDER = "mls10-wellness_tourism_mlops/deployment"
+DEPLOY_FOLDER = "mlops/deployment"
 
 def deploy():
     """if not os.getenv("HF_TOKEN"):
