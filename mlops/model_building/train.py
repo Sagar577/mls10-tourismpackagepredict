@@ -15,9 +15,15 @@ from huggingface_hub import login, HfApi, create_repo, hf_hub_download
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
 import mlflow
 
+# --- MLFLOW CONFIGURATION ---
+# Fixed: Dynamic URI to prevent 'Connection Refused' in GitHub Actions
+if "public_url" in globals():
+    mlflow.set_tracking_uri(public_url)
+else:
+    # Fallback for GitHub Runner
+    tracking_uri = "file://" + os.path.abspath("mlruns")
+    mlflow.set_tracking_uri(tracking_uri)
 
-mlflow.set_tracking_uri("http://localhost:5000")
-# Set the name for the experiment
 mlflow.set_experiment("mls10-mlops-tourismpackagepredict-experiment-live")
 
 # CONFIGURATION
