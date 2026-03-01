@@ -18,7 +18,7 @@ import mlflow
 
 mlflow.set_tracking_uri("http://localhost:5000")
 # Set the name for the experiment
-mlflow.set_experiment("mls10-mlops-tourismpackagepredict-experiment")
+mlflow.set_experiment("mls10-mlops-tourismpackagepredict-experiment-live")
 
 # CONFIGURATION
 MODEL_REPO_ID = "SagarAtHf/tourismpackagepredict-model" # Corrected MODEL_REPO_ID
