@@ -15,23 +15,8 @@ from huggingface_hub import login, HfApi, create_repo, hf_hub_download
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
 import mlflow
 
-from pyngrok import ngrok
-import subprocess
-import mlflow
 
-# Set your auth token here (replace with your actual token)
-ngrok.set_auth_token("3AGxvs9AEyCdKpWkuS2EQH5ZsCC_2nW3ExXFmSnuYWYRc4AVD")
-
-# Start MLflow UI on port 5000
-process = subprocess.Popen(["mlflow", "ui", "--port", "5000"])
-
-# Create public tunnel
-public_url = ngrok.connect(5000).public_url
-print("MLflow UI is available at:", public_url)
-
-# Set the tracking URL for MLflow
-mlflow.set_tracking_uri(public_url)
-
+mlflow.set_tracking_uri("http://localhost:5000")
 # Set the name for the experiment
 mlflow.set_experiment("mls10-mlops-tourismpackagepredict-experiment")
 
