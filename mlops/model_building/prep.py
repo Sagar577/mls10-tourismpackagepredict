@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split # for data preprocessing and pipeline creation
 from sklearn.preprocessing import LabelEncoder # for encoding the category variables
-from datasets import load_dataset
 from huggingface_hub import HfApi # for hugging face authentication and uploading files
 import os
 
